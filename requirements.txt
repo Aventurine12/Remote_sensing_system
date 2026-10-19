@@ -1,0 +1,45 @@
+# aerosky 运行期依赖（Python 3.9+，Windows / Linux 均可）
+#
+# 一键安装（国内加速）：
+#   python -m venv .venv
+#   .venv\Scripts\python -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+# 或直接跑 tools\setup_env.ps1（会自动处理 CPU / CUDA 版 PyTorch 的差异）
+
+# --- 深度学习框架 ---------------------------------------------------------
+# 注意：PyPI 上的 Windows 轮子是 CPU 版。需要 GPU 加速请改用官方 CUDA 索引：
+#   pip install torch==2.2.2 torchvision==0.17.2 --index-url https://download.pytorch.org/whl/cu121
+# 或直接执行 tools/upgrade_to_cuda.ps1
+torch==2.2.2
+torchvision==0.17.2
+numpy==1.26.4
+
+# --- 地理空间（自带 GDAL 能力，无需单独装 GDAL） ---------------------------
+rasterio==1.3.11
+pyproj==3.6.1
+shapely==2.0.7
+affine
+
+# --- 图像处理 -------------------------------------------------------------
+opencv-python==4.10.0.84
+Pillow==10.4.0
+scikit-image==0.24.0
+
+# --- 模型库 ---------------------------------------------------------------
+ultralytics==8.3.40              # YOLO（DOTAv1 旋转框检测、建筑实例分割权重加载）
+segmentation-models-pytorch==0.3.4   # U-Net / DeepLabV3+ 等分割网络（自带微调脚本）
+timm==0.9.7
+einops==0.8.0
+huggingface-hub                  # 从 HuggingFace 拉取预训练权重
+
+# --- 图形界面 -------------------------------------------------------------
+PyQt5==5.15.11
+
+# --- 其它 -----------------------------------------------------------------
+plyfile                          # 3DGS 标准 .ply 读写（自研实现为主，plyfile 作对照）
+requests
+tqdm
+pyyaml
+matplotlib==3.9.2
+pandas==2.2.3
+scipy==1.13.1
+scikit-learn==1.6.1

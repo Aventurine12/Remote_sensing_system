@@ -1,0 +1,92 @@
+# ============================================================
+# aerosky 默认配置（可复制修改；命令行参数会覆盖这里的值）
+# ============================================================
+app:
+  title: 空天协同的多光谱遥感影像智能解译与三维监测系统
+  version: 1.0.0
+  window: [1600, 950]
+
+device:
+  prefer: cuda        # cuda 不可用时自动回落到 cpu
+  allow_cpu: true
+
+# 大图分块推理："分块切割 — 并行推理 — 无缝拼接"
+tiling:
+  tile_size: 1024
+  overlap: 128
+  batch_size: 2
+  blend: cosine       # none | cosine
+  max_workers: 2
+
+models:
+  segmentation:
+    # yolo_building: 卫星影像建筑实例分割（HuggingFace 预训练权重，开箱可用）
+    # smp_unet:      自训练 U-Net，需要 weights/unet_building.pth
+    # spectral:      纯光谱+形态学，无权重兜底
+    backend: yolo_building
+    encoder: resnet34
+    encoder_weights: imagenet
+    checkpoint: unet_building.pth
+    classes: [背景, 建筑, 道路, 植被, 水体, 裸地]
+    num_classes: 6
+    input_size: [512, 512]
+    threshold: 0.5
+
+  detection:
+    # ultralytics_obb: DOTAv1 预训练旋转框（航拍 15 类）
+    backend: ultralytics_obb
+    weights: yolo11n-obb.pt
+    conf: 0.25
+    iou: 0.45
+    input_size: 1024
+    fallback_weights: yolov8n.pt
+
+  change_detection:
+    # mask_diff:      前后时相建筑掩膜差分（开箱可用）
+    # siamunet_diff:  自训练 SiamUnet-diff，需要 weights/siamunet_diff_whucd.pth
+    # cva:            变化向量分析兜底
+    backend: mask_diff
+    checkpoint: siamunet_diff_whucd.pth
+    input_size: [256, 256]
+    base_channels: 16
+    threshold: 0.5
+    min_area_px: 64
+
+# 三维高斯泼溅（轻量化策略：局部重建 + 参数精简）
+gsplat:
+  max_gaussians: 100000
+  sh_degree: 1                 # 球谐阶数由原论文 3 阶降到 1 阶
+  iterations: 400
+  learning_rate:
+    position: 0.00016
+    feature: 0.0025
+    opacity: 0.05
+    scaling: 0.005
+    rotation: 0.001
+  densify_from: 200
+  densify_until: 500
+  densify_grad_threshold: 0.0    # 0 = 自适应（取梯度范数 85 分位），正数则用固定阈值
+  opacity_reset_interval: 300
+  downscale: 2                 # 训练时影像降采样倍率
+  colmap:
+    binary: false
+    images_dir: images
+    sparse_dir: sparse/0
+
+registration:
+  crs: EPSG:4326
+  mode: affine
+  ransac_iters: 400
+  max_rmse_m: 3.0
+
+report:
+  org: 哈尔滨工业大学 大学生创新训练计划
+  template: default
+  formats: [html, pdf, geojson]
+
+uav_task:
+  front_overlap: 0.8
+  side_overlap: 0.7
+  flight_height_m: 120
+  gsd_cm: 3.0
+  buffer_m: 10.0

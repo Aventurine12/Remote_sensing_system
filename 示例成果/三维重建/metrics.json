@@ -1,0 +1,25 @@
+{
+  "backend": "taichi",
+  "num_gaussians": 165064,
+  "iterations": 2000,
+  "device": "cuda",
+  "train_seconds": 3232.9,
+  "exit_code": 0,
+  "dataset": {
+    "train": 42,
+    "val": 6,
+    "points": 61514,
+    "work": "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\taichi_data",
+    "scale": 0.16276041666666666
+  },
+  "ply": "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\point_cloud.ply",
+  "previews": [
+    "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\orbit_00.png",
+    "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\orbit_01.png",
+    "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\orbit_02.png",
+    "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\orbit_03.png",
+    "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\orbit_04.png",
+    "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\orbit_05.png"
+  ],
+  "log_file": "D:\\Code\\dc\\aerosky\\outputs\\3dgs_fix\\run_taichi\\train_config.yaml"
+}

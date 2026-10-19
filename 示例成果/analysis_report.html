@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang='zh-CN'><head><meta charset='utf-8'>
+<title>空天协同的多光谱遥感影像智能解译与三维监测系统</title><style>
+body{font-family:"Microsoft YaHei","SimSun",Arial,sans-serif;margin:0;padding:28px 36px;
+     color:#1c1f24;line-height:1.65;font-size:13px;}
+h1{font-size:22px;text-align:center;margin:6px 0 2px;letter-spacing:1px;}
+.sub{text-align:center;color:#606a78;font-size:12px;margin-bottom:18px;}
+h2{font-size:15px;margin:22px 0 8px;padding-left:9px;border-left:4px solid #2f6fb5;color:#173a5e;}
+h3{font-size:13px;margin:14px 0 6px;color:#24486e;}
+table{border-collapse:collapse;width:100%;margin:6px 0 12px;font-size:12px;}
+th,td{border:1px solid #b9c3cf;padding:5px 7px;text-align:center;}
+th{background:#eaf1f8;font-weight:600;}
+td.l{text-align:left;}
+.kv td:first-child{background:#f4f7fa;width:22%;text-align:left;}
+.fig{margin:8px 0 4px;text-align:center;}
+.fig img{max-width:100%;border:1px solid #ccd4dd;}
+.cap{text-align:center;color:#5a6473;font-size:11px;margin-bottom:12px;}
+.tag{display:inline-block;padding:1px 8px;border-radius:9px;background:#e8f2e8;color:#2c6b34;
+     font-size:11px;margin-right:6px;}
+.tag.warn{background:#fdecec;color:#a03030;}
+.note{background:#f7f9fc;border-left:3px solid #9db8d6;padding:8px 12px;font-size:12px;color:#41505f;}
+.foot{margin-top:26px;border-top:1px solid #d5dde5;padding-top:8px;color:#7b8794;font-size:11px;}
+ul{margin:6px 0 10px 18px;padding:0;} li{margin:3px 0;}
+</style></head><body>
+<h1>空天协同的多光谱遥感影像智能解译与三维监测系统</h1>
+<div class='sub'>城市更新场景智能分析报告　|　生成时间 2026-10-10 15:30　|　引擎 aerosky v1.0</div>
+<h2>一、项目与数据概览</h2>
+<table class='kv'><tr><td>项目名称</td><td class='l'>空天协同的多光谱遥感影像智能解译与三维监测系统</td></tr><tr><td>分析区域</td><td class='l'>哈尔滨市典型城市更新场景（演示区）</td></tr><tr><td>分析人</td><td class='l'>空天协同项目组</td></tr><tr><td>生成时间</td><td class='l'>2026-10-10 15:30</td></tr><tr><td>推理后端</td><td class='l'>CPU</td></tr><tr><td>前时相影像</td><td class='l'>D:\Code\dc\aerosky\outputs\demo_run\real\satellite_before.tif</td></tr><tr><td>后时相影像</td><td class='l'>D:\Code\dc\aerosky\outputs\demo_run\real\satellite_after.tif</td></tr></table>
+<h3>1.1 影像地理信息</h3>
+<table><thead><tr><th>影像</th><th>尺寸(px)</th><th>波段</th><th>地面分辨率(m)</th><th>坐标系</th><th>范围(经纬度)</th></tr></thead><tbody><tr><td>前时相</td><td>1536×1536</td><td>3</td><td>0.30</td><td>EPSG:4326</td><td>126.63200~45.74783E, 126.63793~45.75200N</td></tr></tbody></table>
+<h2>二、遥感智能解译结果</h2>
+<table><thead><tr><th>解译任务</th><th>使用模型</th><th>是否降级</th><th>耗时</th><th>主要结果</th></tr></thead><tbody><tr><td>语义分割</td><td>YOLOv8-seg(建筑提取, 卫星影像)</td><td>否</td><td>6.9 s</td><td>图斑 329 个</td></tr><tr><td>目标检测</td><td>YOLO-OBB(DOTAv1) yolo11n-obb.pt</td><td>否</td><td>1.1 s</td><td>目标 23 个</td></tr><tr><td>变化检测</td><td>建筑掩膜差分(双时相)</td><td>否</td><td>3.7 s</td><td>变化图斑 19 个；变化面积 2,408 m²</td></tr></tbody></table>
+<div class='fig'><img src='fig_segmentation.png'/></div><div class='cap'>图　语义分割结果（地物分类图）</div>
+<div class='fig'><img src='fig_detection.png'/></div><div class='cap'>图　目标检测结果（DOTA 航拍目标）</div>
+<div class='fig'><img src='fig_change.png'/></div><div class='cap'>图　变化检测结果（红色为检出的变化区域）</div>
+<div class='fig'><img src='registration_overlay.png'/></div><div class='cap'>图　三维模型与卫星底图配准核验</div>
+<h2>三、变化图斑清单与处置建议</h2>
+<table><thead><tr><th>序号</th><th>变化类型</th><th>面积(m²)</th><th>中心经度</th><th>中心纬度</th><th>建议处置</th></tr></thead><tbody><tr><td>1</td><td>新增</td><td>6.1</td><td>126.634724</td><td>45.751462</td><td>现场核查并比对规划许可</td></tr><tr><td>2</td><td>新增</td><td>15.8</td><td>126.635674</td><td>45.751471</td><td>现场核查并比对规划许可</td></tr><tr><td>3</td><td>新增</td><td>17.3</td><td>126.634592</td><td>45.751388</td><td>现场核查并比对规划许可</td></tr><tr><td>4</td><td>新增</td><td>14.8</td><td>126.634693</td><td>45.751284</td><td>现场核查并比对规划许可</td></tr><tr><td>5</td><td>新增</td><td>6.1</td><td>126.634908</td><td>45.750709</td><td>现场核查并比对规划许可</td></tr><tr><td>6</td><td>新增</td><td>349.9</td><td>126.634014</td><td>45.750119</td><td>现场核查并比对规划许可</td></tr><tr><td>7</td><td>新增</td><td>8.3</td><td>126.637495</td><td>45.748938</td><td>现场核查并比对规划许可</td></tr><tr><td>8</td><td>新增</td><td>370.5</td><td>126.637206</td><td>45.748954</td><td>现场核查并比对规划许可</td></tr><tr><td>9</td><td>新增</td><td>9.4</td><td>126.636785</td><td>45.748737</td><td>现场核查并比对规划许可</td></tr><tr><td>10</td><td>新增</td><td>11.5</td><td>126.635642</td><td>45.748704</td><td>现场核查并比对规划许可</td></tr><tr><td>11</td><td>新增</td><td>6.8</td><td>126.636930</td><td>45.748547</td><td>现场核查并比对规划许可</td></tr><tr><td>12</td><td>新增</td><td>358.9</td><td>126.636645</td><td>45.748593</td><td>现场核查并比对规划许可</td></tr></tbody></table>
+<div class='note'>说明：面积由变化掩膜像元数乘以地面分辨率平方得到；中心经纬度由像元坐标经 GDAL 仿射变换反算至 WGS84，可直接作为无人机航摄与现场核查的定位依据。</div>
+<h2>四、无人机航摄任务建议</h2>
+<h3>4.1 目标区 1</h3>
+<table><thead><tr><th>参数</th><th>取值</th></tr></thead><tbody><tr><td>目标区中心</td><td>126.635866°E, 45.748548°N</td></tr><tr><td>目标区面积</td><td>762 m²（约 0.076 公顷）</td></tr><tr><td>设计地面分辨率 GSD</td><td>3.3 cm/px</td></tr><tr><td>推荐航高</td><td>120 m（相对起飞点）</td></tr><tr><td>重叠度</td><td>航向 80% / 旁向 70%</td></tr><tr><td>航带间距 54 m，曝光间距 24 m</td><td></td></tr><tr><td>航带数 2 条，每条 4 张，共 8 张像片</td><td></td></tr><tr><td>预计航程 0.17 km，作业时间约 1 min</td><td></td></tr></tbody></table>
+<div class='note'>相机：1 英寸 CMOS 20MP（等效 24mm），像幅 5472×3648 px</div>
+<div class='note'>建议在目标区外扩 50 m 设置起降点，先试拍 3 张检查重叠与曝光。</div>
+<div class='note'>目标区最大跨度约 58 m，单架次可完成。</div>
+<h2>五、三维高斯泼溅重建与地理配准</h2>
+<table><thead><tr><th>指标</th><th>取值</th></tr></thead><tbody><tr><td>重建来源</td><td>合成多视角演示数据</td></tr><tr><td>高斯单元数</td><td>10,729</td></tr><tr><td>球谐阶数</td><td>1</td></tr><tr><td>渲染质量 PSNR</td><td>16.73 dB</td></tr><tr><td>结构相似度 SSIM</td><td>0.5688</td></tr><tr><td>训练耗时</td><td>0.0 s</td></tr><tr><td>推理设备</td><td>cpu</td></tr><tr><td>模型文件</td><td>point_cloud.ply</td></tr></tbody></table>
+<h3>5.1 与卫星影像的地理配准</h3>
+<table><thead><tr><th>参数</th><th>取值</th></tr></thead><tbody><tr><td>配准方式</td><td>自动配准（轮廓 IoU 最优化）</td></tr><tr><td>原点经度</td><td>126.6344052</td></tr><tr><td>原点纬度</td><td>45.7508589</td></tr><tr><td>比例</td><td>0.21181 m / 局部单位</td></tr><tr><td>朝向</td><td>7.50°</td></tr><tr><td>轮廓重合度 IoU</td><td>1.0000</td></tr><tr><td>几何偏差 RMSE</td><td>2.251 m</td></tr></tbody></table>
+<div class='fig'><img src='orbit_00.png'/></div><div class='cap'>orbit_00</div>
+<div class='fig'><img src='orbit_01.png'/></div><div class='cap'>orbit_01</div>
+<div class='fig'><img src='orbit_02.png'/></div><div class='cap'>orbit_02</div>
+<div class='fig'><img src='orbit_03.png'/></div><div class='cap'>orbit_03</div>
+<div class='fig'><img src='orbit_04.png'/></div><div class='cap'>orbit_04</div>
+<div class='fig'><img src='orbit_05.png'/></div><div class='cap'>orbit_05</div>
+<h2>六、模型与运行环境</h2>
+<table><thead><tr><th>任务</th><th>模型</th><th>状态</th><th>设备</th></tr></thead><tbody><tr><td>语义分割</td><td>YOLOv8-seg(建筑提取, 卫星影像)</td><td>正常</td><td>cpu</td></tr><tr><td>目标检测</td><td>YOLO-OBB(DOTAv1) yolo11n-obb.pt</td><td>正常</td><td>cpu</td></tr><tr><td>变化检测</td><td>建筑掩膜差分(双时相)</td><td>正常</td><td>cpu</td></tr></tbody></table>
+<h2>七、结论与建议</h2><ul>
+<li>系统完成了「多光谱影像输入 → 语义分割/目标检测/变化检测 → 三维高斯泼溅重建 → 地理配准 → 结构化报告输出」的空天协同端到端流程。</li>
+<li>本次共检出变化图斑 12 个，合计变化面积 1,175 m²。</li>
+<li>全部解译结果均已由 GDAL 仿射变换映射至 WGS84 经纬度，可直接作为无人机航摄与现场核查的定位依据。</li>
+<li>建议对新增建筑类图斑优先核查规划许可；对拆除/损毁类图斑核实修复重建需求。</li>
+</ul>
+<div class='foot'>本报告由 aerosky 空天协同智能监测系统自动生成，数据与结论供城市更新核查参考。生成时间 2026-10-10 15:30。</div>
+</body></html>

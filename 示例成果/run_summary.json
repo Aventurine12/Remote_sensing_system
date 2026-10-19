@@ -1,0 +1,216 @@
+{
+  "started": "2026-10-10 15:29:26",
+  "output": "D:\\Code\\dc\\aerosky\\outputs\\demo_run",
+  "raster": {
+    "size": [
+      1536,
+      1536
+    ],
+    "gsd_m": 0.3,
+    "source": "真实卫星影像（keremberke/satellite-building-segmentation，9 景拼接）",
+    "bounds_lonlat": [
+      126.632,
+      45.747831,
+      126.637932,
+      45.752
+    ]
+  },
+  "reconstruction": {
+    "root": "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs",
+    "ply": "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\point_cloud.ply",
+    "checkpoint": "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\point_cloud.pt",
+    "num_gaussians": 10729,
+    "sh_degree": 1,
+    "psnr": 16.727477303667424,
+    "ssim": 0.568831290518074,
+    "seconds": 0.0,
+    "device": "cpu",
+    "images_dir": "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\synthetic\\images",
+    "sparse_dir": "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\synthetic\\sparse\\0",
+    "previews": [
+      "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\orbit_00.png",
+      "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\orbit_01.png",
+      "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\orbit_02.png",
+      "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\orbit_03.png",
+      "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\orbit_04.png",
+      "D:\\Code\\dc\\aerosky\\outputs\\demo_run\\3dgs\\orbit_05.png"
+    ],
+    "source": "synthetic",
+    "origin_lonlat": [
+      126.632,
+      45.752
+    ],
+    "local_center": [
+      -0.3017147721687779,
+      0.4920812532027709,
+      0.7592604188123422
+    ]
+  },
+  "registration": {
+    "iou": 1.0,
+    "rmse_m": 2.2506,
+    "origin_lon": 126.6344052,
+    "origin_lat": 45.7508589,
+    "meters_per_unit": 0.211812,
+    "heading_deg": 7.5,
+    "offset_px": [
+      122.0,
+      221.0
+    ]
+  },
+  "tasks": {
+    "segmentation": {
+      "class_pixels": {
+        "背景": 511462,
+        "建筑": 157330,
+        "道路": 646863,
+        "植被": 392048,
+        "水体": 192013,
+        "裸地": 459580
+      },
+      "num_polygons": 329,
+      "task": "segmentation",
+      "model": "YOLOv8-seg(建筑提取, 卫星影像)",
+      "fallback": false,
+      "elapsed": 6.892,
+      "foreground_px": 1847834,
+      "foreground_ratio": 0.78321
+    },
+    "detection": {
+      "by_class": {
+        "小型车辆": 20,
+        "船舶": 1,
+        "大型车辆": 2
+      },
+      "num_detections": 23,
+      "task": "detection",
+      "model": "YOLO-OBB(DOTAv1) yolo11n-obb.pt",
+      "fallback": false,
+      "elapsed": 1.054
+    },
+    "change_detection": {
+      "num_changes": 19,
+      "new_count": 13,
+      "del_count": 6,
+      "changed_area_m2": 2407.77,
+      "pixel_size_m": [
+        0.3,
+        0.3
+      ],
+      "task": "change_detection",
+      "model": "建筑掩膜差分(双时相)",
+      "fallback": false,
+      "elapsed": 3.701,
+      "foreground_px": 26752,
+      "foreground_ratio": 0.01134
+    }
+  },
+  "models": {
+    "segmentation": {
+      "loaded": true,
+      "name": "YOLOv8-seg(建筑提取, 卫星影像)",
+      "fallback": false,
+      "device": "cpu"
+    },
+    "detection": {
+      "loaded": true,
+      "name": "YOLO-OBB(DOTAv1) yolo11n-obb.pt",
+      "fallback": false,
+      "device": "cpu"
+    },
+    "change_detection": {
+      "loaded": true,
+      "name": "建筑掩膜差分(双时相)",
+      "fallback": false,
+      "device": "cpu"
+    }
+  },
+  "changes": [
+    {
+      "type": "新增",
+      "area_m2": 6.120228557476873,
+      "center_lon": 126.63472364747513,
+      "center_lat": 45.75146155237924,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 15.840591560528377,
+      "center_lon": 126.63567375705948,
+      "center_lat": 45.751471322598164,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 17.28064533875823,
+      "center_lon": 126.6345923315163,
+      "center_lat": 45.75138773294735,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 14.76055122685599,
+      "center_lon": 126.63469326456702,
+      "center_lat": 45.751284421928716,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 6.120228557476873,
+      "center_lon": 126.63490771051656,
+      "center_lat": 45.75070893535631,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 349.93306810985416,
+      "center_lon": 126.63401351136844,
+      "center_lat": 45.750118931306915,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 8.280309224821652,
+      "center_lon": 126.63749467168832,
+      "center_lat": 45.74893776008685,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 370.45383444962954,
+      "center_lon": 126.6372055893191,
+      "center_lat": 45.74895396154417,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 9.360349558494041,
+      "center_lon": 126.63678453558164,
+      "center_lat": 45.74873674687896,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 11.52043022583882,
+      "center_lon": 126.63564153499227,
+      "center_lat": 45.748704489648226,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 6.8402554465918,
+      "center_lon": 126.63692975558315,
+      "center_lat": 45.74854677039986,
+      "advice": "现场核查并比对规划许可"
+    },
+    {
+      "type": "新增",
+      "area_m2": 358.9334042237907,
+      "center_lon": 126.63664498019014,
+      "center_lat": 45.748592786924796,
+      "advice": "现场核查并比对规划许可"
+    }
+  ],
+  "elapsed_total_s": 36.3,
+  "finished": "2026-10-10 15:30:03"
+}

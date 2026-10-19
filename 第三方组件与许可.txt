@@ -1,0 +1,28 @@
+﻿本软件在研究与开发过程中使用/对接了以下第三方组件，特此说明并致谢。
+
+一、运行期依赖（通过 pip 安装，各自遵循其原始许可）
+  PyTorch / TorchVision     BSD-3-Clause
+  Ultralytics YOLO          AGPL-3.0
+  segmentation-models-pytorch  MIT
+  OpenCV                    Apache-2.0
+  rasterio / GDAL / pyproj / shapely / affine   BSD / MIT / LGPL
+  PyQt5                     GPL-3.0 / 商业双许可
+  NumPy / SciPy / pandas / scikit-image / matplotlib   BSD
+  Taichi                    Apache-2.0
+
+二、预训练模型权重（weights/ 目录）
+  yolov8s-building-segmentation.pt   来源：HuggingFace keremberke/satellite-building-segmentation
+  yolo11n-obb.pt                     来源：Ultralytics 官方发布（DOTAv1 预训练）
+  权重版权归原作者所有，仅供本项目的教学与研究用途。
+
+三、三维重建对接的开源实现（不在本包内，需按 3DGS后端说明.md 自行安装）
+  graphdeco-inria/gaussian-splatting       原论文官方实现（非商业许可）
+  nerfstudio-project/gsplat                Apache-2.0
+  wanmeihuali/taichi_3d_gaussian_splatting Apache-2.0
+  colmap/colmap                            BSD-3-Clause
+
+四、数据集
+  DOTAv1、WHU-CD 等公开数据集版权归各自发布方所有，仅用于研究与验证。
+
+注意：Ultralytics 采用 AGPL-3.0，若将本软件用于商业分发，请先确认其许可要求
+或替换为其它检测框架。

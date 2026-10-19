@@ -1,0 +1,9 @@
+{
+  "origin_lon": 126.63440517275646,
+  "origin_lat": 45.75085892702796,
+  "meters_per_unit": 0.21181197843332236,
+  "heading_deg": 7.499999999999999,
+  "source": "auto_registration",
+  "rmse_m": 2.2506367604930744,
+  "confidence": 1.0000001658564166
+}
